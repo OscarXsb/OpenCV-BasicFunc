@@ -171,7 +171,7 @@ cv2.destroyAllWindows()
 
 识别结果如下：
 
-![](./references/yolov5_res_1.png)
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/yolov5_res_1.png)
 
 
 
@@ -181,7 +181,7 @@ cv2.destroyAllWindows()
 
 ​    
 
-![](./references/yolov5_res_2.jpg)
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/yolov5_res_2.jpg)
 
-![](./references/yolov5_res_3.jpg)
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/yolov5_res_3.jpg)
 
