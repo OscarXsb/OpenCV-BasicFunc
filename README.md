@@ -185,3 +185,82 @@ cv2.destroyAllWindows()
 
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/yolov5_res_3.jpg)
 
+> ##### Yolo模型训练
+
+对于Yolo v5模型训练，这里只做简要演示，不作详细说明。
+
+要进行模型训练，首先需要持有数据集，如果你要构建自己的项目，当然可以自行进行图片的的采集以及需要检测物体的标注，要进行标注的步骤，可以采用 MIT 的 labelImg，安装方法不做说明，如果只是想进行练习，可以从[这里](https://public.roboflow.com/)下载数据集，示例训练的是口罩检测的[模型](https://public.roboflow.com/object-detection/mask-wearing)，国内环境有限，所以[这里](https://cloud.189.cn/t/mUFZfmBJn67n)提供下载好的口罩数据集
+
+做好准备工作,进入正题:
+
+首先需要准备数据文件,这里mask文件夹与yolov5处于同一文件夹下,data文件位于下载好的压缩包中,文件如下:
+
+
+
+```yaml
+train: ../mask/train/images #相对于train.py的路径
+val: ../mask/valid/images
+
+nc: 2 #类型的数量
+names: ['mask', 'no-mask'] #这里分为戴口罩和未戴口罩的状态,分别 依次对应数字 0,1
+```
+
+然后需要准备好训练时需要读取的文件如下,存放在 **yolov5/models/ **目录下,这里我想把精度调高一些,所以采用yolov5x.yaml进行修改,在同级目录下命名为yolov5x_mask.yaml:
+
+
+
+```yaml
+# parameters
+nc: 2 # number of classes 只需要更改这里的数量
+depth_multiple: 1.33  # model depth multiple
+width_multiple: 1.25  # layer channel multiple
+
+# anchors
+anchors:
+  - [10,13, 16,30, 33,23]  # P3/8
+  - [30,61, 62,45, 59,119]  # P4/16
+  - [116,90, 156,198, 373,326]  # P5/32
+
+# YOLOv5 backbone
+backbone:
+  # [from, number, module, args]
+  [[-1, 1, Focus, [64, 3]],  # 0-P1/2
+   [-1, 1, Conv, [128, 3, 2]],  # 1-P2/4
+   [-1, 3, BottleneckCSP, [128]],
+   [-1, 1, Conv, [256, 3, 2]],  # 3-P3/8
+   [-1, 9, BottleneckCSP, [256]],
+   [-1, 1, Conv, [512, 3, 2]],  # 5-P4/16
+   [-1, 9, BottleneckCSP, [512]],
+   [-1, 1, Conv, [1024, 3, 2]],  # 7-P5/32
+   [-1, 1, SPP, [1024, [5, 9, 13]]],
+   [-1, 3, BottleneckCSP, [1024, False]],  # 9
+  ]
+
+# YOLOv5 head
+head:
+  [[-1, 1, Conv, [512, 1, 1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [[-1, 6], 1, Concat, [1]],  # cat backbone P4
+   [-1, 3, BottleneckCSP, [512, False]],  # 13
+
+   [-1, 1, Conv, [256, 1, 1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [[-1, 4], 1, Concat, [1]],  # cat backbone P3
+   [-1, 3, BottleneckCSP, [256, False]],  # 17 (P3/8-small)
+
+   [-1, 1, Conv, [256, 3, 2]],
+   [[-1, 14], 1, Concat, [1]],  # cat head P4
+   [-1, 3, BottleneckCSP, [512, False]],  # 20 (P4/16-medium)
+
+   [-1, 1, Conv, [512, 3, 2]],
+   [[-1, 10], 1, Concat, [1]],  # cat head P5
+   [-1, 3, BottleneckCSP, [1024, False]],  # 23 (P5/32-large)
+
+   [[17, 20, 23], 1, Detect, [nc, anchors]],  # Detect(P3, P4, P5)
+  ]
+
+```
+
+进入到下一步,训练:
+
+在 **yolov5/train.py** 所在目录下启动cmd, 输入 **python train.py --img 640 --batch 2 --epochs 1000 --data ../mask/data.yaml --cfg models/yolov5x_mask.yaml --weights weights/yolov5x.pt** 的命令,其中 epochs 后对应的是训练时迭代的次数,一般情况下 300 就足够了,batch后填写一次喂到模型里的数据量,正常应为16,由于GPU屡次报 内存溢出 的错误,故改为 2,weights代表权重文件,这里指定的是精度最高的文件,若输入 ' ' 则为随机,
