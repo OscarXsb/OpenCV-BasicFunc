@@ -163,7 +163,7 @@ cv2.destroyAllWindows()
 
 #### Yolo目标检测
 
-​        YOLO（You Only Look Once）是一种基于深度神经网络的对象识别和定位算法，其最大的特点是运行速度很快，可以用于实时系统。Yolo 的工作原理不再进行分析，具体请见  [Github Yolo v5](https://github.com/ultralytics/yolov5)，首先需要下载 Yolo 的运行库 ，在这里进行克隆 [Github Yolo v5](https://github.com/ultralytics/yolov5)，官方已有训练好的模型，国内可在此下载，下载好后放置在 yolov5 库的 weights 文件夹下。
+​        YOLO（You Only Look Once）是一种基于深度神经网络的对象识别和定位算法，其最大的特点是运行速度很快，可以用于实时系统。Yolo 的工作原理不再进行分析，具体请见  [Github Yolo v5](https://github.com/ultralytics/yolov5)，首先需要下载 Yolo 的运行库 ，在这里进行克隆 [Github Yolo v5](https://github.com/ultralytics/yolov5)，官方已有训练好的模型，国内可在此[下载](https://cloud.189.cn/t/aQvMnuzYfQvq)，下载好后放置在 yolov5 库的 weights 文件夹下。
 
 > ##### Yolo初体验
 
