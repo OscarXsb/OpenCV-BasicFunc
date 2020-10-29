@@ -263,4 +263,16 @@ head:
 
 进入到下一步,训练:
 
-在 **yolov5/train.py** 所在目录下启动cmd, 输入 **python train.py --img 640 --batch 2 --epochs 1000 --data ../mask/data.yaml --cfg models/yolov5x_mask.yaml --weights weights/yolov5x.pt** 的命令,其中 epochs 后对应的是训练时迭代的次数,一般情况下 300 就足够了,batch后填写一次喂到模型里的数据量,正常应为16,由于GPU屡次报 内存溢出 的错误,故改为 2,weights代表权重文件,这里指定的是精度最高的文件,若输入 ' ' 则为随机,回车开始,在训练过程中,为了使训练过程可视化,可以在yolov5目录下新建cmd窗口,输入 tensorboard --logdir runs/ ,然后根据提示在浏览器中输入 **localhost:提示的端口号**,即可实时刷新看到效果,
+在 **yolov5/train.py** 所在目录下启动cmd, 输入 **python train.py --img 640 --batch 2 --epochs 1000 --data ../mask/data.yaml --cfg models/yolov5x_mask.yaml --weights weights/yolov5x.pt** 的命令,其中 epochs 后对应的是训练时迭代的次数,一般情况下 300 就足够了,batch后填写一次喂到模型里的数据量,正常应为16,由于GPU屡次报 内存溢出 的错误,故改为 2,weights代表权重文件,这里指定的是精度最高的文件,若输入 ' ' 则为随机,回车开始,在训练过程中,为了使训练过程可视化,可以在yolov5目录下新建cmd窗口,输入 tensorboard --logdir runs/ ,然后根据提示在浏览器中输入 **localhost:提示的端口号**,即可实时刷新看到效果,训练过程如下：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.png)
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_2.png)
+
+实时预览如下：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_1.png)
+
+训练后模型使用效果如下：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)
