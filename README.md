@@ -3,6 +3,8 @@
 
 这是一个学习如何最基础的使用 OpenCV-Python 与 Yolo 的开源源代码仓库。
 
+###### *\*注意：本说明文件与安装过程均在  **Windows10** 上进行！*
+
 ### 开发环境
 ---
 ​    在本文中，所有的例程全部建立在 Python v3.7.6 的基础上，OpenCV - python 的版本是 v4.4.0，对于开发环境的配置，对于yolo的使用和开发，这里的Pytorch版本是v10.2，建议先安装 Anaconda 的Python 集成库，这样会方便新的包的安装和编译。
@@ -14,8 +16,8 @@
 
 ​    首先，简单对 OpenCV 的基础运用进行了解。
 
->##### 摄像头的捕捉
-
+##### 摄像头的捕捉
+---
 ​	因为OpenCV通常用于人脸识别等多个需要捕捉实时视频画面的应用，所以先看下如何打开摄像头。 源代码文件为 **Camera-10-11.py** 
 
 代码如下：
@@ -44,8 +46,8 @@ cv2.destroyAllWindows() #销毁窗口
 
 
 
-> ##### OpenCV 边缘化处理
-
+##### OpenCV 边缘化处理
+---
 源代码文件为 **Edge-detection-10-11.py** ，代码与注释如下：
 
 ```python
@@ -83,8 +85,8 @@ cv2.destroyAllWindows()
 
 
 
-> ##### OpenCV 人脸、眼睛、微笑检测
-
+##### OpenCV 人脸、眼睛、微笑检测
+---
 源代码文件为 **Smile-detection-10-11.py**，代码与注释如下：
 
 ```python
@@ -125,8 +127,8 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
->##### 引入图片或视频
-
+##### 引入图片或视频
+---
 在OpenCV的处理过程中，引入本地已有的图片或视频进行处理也是必不可少的，这里只介绍视频的引入（图片的引入在 **Import-image/Import-image-10-14.py**，内含图片的导入与保存），源代码文件在 **Progress-video/Playing-videos-10-14.py** ,这里代码中引入的视频文件名为 test.mp4，需要自行准备，源代码如下：
 
 ```python
@@ -161,12 +163,12 @@ cv2.destroyAllWindows()
 
 以上就是OpenCV的基础，暂时告一段落
 
-#### Yolo目标检测
+#### Yolo目标检测基础
 
 ​        YOLO（You Only Look Once）是一种基于深度神经网络的对象识别和定位算法，其最大的特点是运行速度很快，可以用于实时系统。Yolo 的工作原理不再进行分析，具体请见  [Github Yolo v5](https://github.com/ultralytics/yolov5)，首先需要下载 Yolo 的运行库 ，在这里进行克隆 [Github Yolo v5](https://github.com/ultralytics/yolov5)，官方已有训练好的模型，国内可在此[下载](https://cloud.189.cn/t/aQvMnuzYfQvq)，下载好后放置在 yolov5 库的 weights 文件夹下。
 
-> ##### Yolo初体验
-
+##### Yolo初体验
+---
 ​       若要体验 Yolo v5 的目标检测结果，可在yolov5库下运行名为 detect.py 文件，后面的参数有两项必传，source 和 weights ，source 代表需进行识别的视频或图片文件，若为本地文件则输入文件路径，若选择默认摄像头，则传入 0 ，weights 代表具体引用的模型文件，上文提供下载的模型其文件权重不同，即识别准确率不同，当然，识别的速度也和模型文件有很大关系，若想调用摄像头，准确度最高，则在 cmd 中输入 **python detect.py --source 0 --weights weights/yolov5x.pt** ,即可进行识别，此处 **weights/yolov5x.pt** 为相对路径，x代表最大，最高，根据各个模型文件也可推断出准确度。
 
 识别结果如下：
@@ -185,8 +187,8 @@ cv2.destroyAllWindows()
 
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/yolov5_res_3.jpg)
 
-> ##### Yolo模型训练
-
+##### Yolo模型训练
+---
 对于Yolo v5模型训练，这里只做简要演示，不作详细说明。
 
 要进行模型训练，首先需要持有数据集，如果你要构建自己的项目，当然可以自行进行图片的的采集以及需要检测物体的标注，要进行标注的步骤，可以采用 MIT 的 labelImg，安装方法不做说明，如果只是想进行练习，可以从[这里](https://public.roboflow.com/)下载数据集，示例训练的是口罩检测的[模型](https://public.roboflow.com/object-detection/mask-wearing)，国内环境有限，所以[这里](https://cloud.189.cn/t/mUFZfmBJn67n)提供下载好的口罩数据集
@@ -276,3 +278,32 @@ head:
 训练后模型使用效果如下：
 
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)
+
+Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关应用。
+
+#### Face Recognition
+---
+这里用到的是Github比较火爆的工具包 - **[face_recognition](https://github.com/ageitgey/face_recognition)** ,官方给出的描述如下：
+
+> *Recognize and manipulate faces from Python or from the command line with the world's simplest face recognition library.*
+>
+> *Built using [dlib](http://dlib.net/)'s state-of-the-art face recognition built with deep learning. The model has an accuracy of 99.38% on the [Labeled Faces in the Wild](http://vis-www.cs.umass.edu/lfw/) benchmark.*
+>
+> *This also provides a simple `face_recognition` command line tool that lets you do face recognition on a folder of images from the command line!*
+
+> *使用世界上最简单的面部识别库从Python或命令行识别和操作面部。*
+> *使用[dlib](http://dlib.net/)的最先进的面部识别技术和深度学习技术构建而成。 该模型在[野生动物标签脸](http://vis-www.cs.umass.edu/lfw/)基准上的准确性为 99.38％。*
+> *这也提供了一个简单的“ face_recognition”命令行工具，使您可以从命令行对图像文件夹进行人脸识别！*
+
+###### **安装**
+
+根据 Github 上官方文档说明：
+
+- macOS or Linux (Windows not officially supported, but might work)
+
+但是由于本文的环境配置在 Linux 系统上，故给出 Windows 的安装教程（安装过程有些繁琐，但本文将给出详细说明）
+
+1.如果本机没有安装 Visual Studio, 安装[Visual Studio]( https://visualstudio.microsoft.com/zh-hans/)，我选择的是 Professional 2019 版本，下载后选择使用 C++的桌面开发进行安装，提示重新启动电脑，重启后继续以下步骤。
+
+2.安装 [boost](https://www.boost.org/users/download/),选择Windows平台下的 ZIP 文件，下载后解压，速度较慢，完成后，在 boost 目录下打开 cmd，输入 bootstrap.bat 运行，
+
