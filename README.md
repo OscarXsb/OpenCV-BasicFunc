@@ -305,5 +305,24 @@ Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关�
 
 1.如果本机没有安装 Visual Studio, 安装[Visual Studio]( https://visualstudio.microsoft.com/zh-hans/)，我选择的是 Professional 2019 版本，下载后选择使用 C++的桌面开发进行安装，提示重新启动电脑，重启后继续以下步骤。
 
-2.安装 [boost](https://www.boost.org/users/download/),选择Windows平台下的 ZIP 文件，下载后解压，速度较慢，完成后，在 boost 目录下打开 cmd，输入 bootstrap.bat 运行，
+2.安装 [boost](https://www.boost.org/users/download/),选择Windows平台下的 ZIP 文件，下载后解压，速度较慢，完成后，在 boost 目录下打开 cmd，输入 bootstrap.bat 运行，看到该目录下生成 b2.exe ，即可在命令行里运行 b2.exe,安装过程如下：
 
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_install_1.png)
+
+成功后提示如下：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_install_2.png)
+
+3.接下来安装 [CMake](https://cmake.org/download/),选择该项进行下载， 
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_install_3.png)
+
+安装过程中，选择 **Add CMake to the system PATH for all users**, 安装成功后，进入到下一步。
+
+4.安装 [dlib](http://dlib.net/),单击左下角的 **Download dlib** ,解压后，在目录下打开cmd，输入 **python setup.py install** 进行安装，成功后提示如下：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_install_4.png)
+
+5.打开 cmd ，输入 **pip3 install face_recognition** ,使用pip进行安装，成功后提示 **Successfully installed face-recognition-X.X.X (版本号) face-recognition-models-X.X.X (版本号)**
+
+附：考虑到有些小伙伴网络环境不畅，因此将 boost_1_74_0.zip , dlib-19.21.zip , cmake-3.19.0-rc2-win64-x64.msi上传到云盘，以上文件截至2020年10月31日均为最新，需要的[自行下载](https://cloud.189.cn/t/f6nu6reeyUvi) 。
