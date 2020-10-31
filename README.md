@@ -329,7 +329,94 @@ Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关�
 
 **使用**
 
-首先克隆或者下载该库的 ZIP 文件，
+使用过程演示的实例是**人脸识别考勤系统**，比较简陋，但能满足基本应用
+
+基础代码和注释如下:
+
+```python
+import cv2
+import numpy as np
+import face_recognition
+import os
+from datetime import datetime
+
+outputPath = "output/" #设置输出文件夹
+path = "imgAttendance" #设置图像文件读取的目录
+images = []
+classNames = []
+myList = os.listdir(path) #依次读取图像目录的文件路径
+print(myList)
+for cl in myList:
+    curImg = cv2.imread(f'{path}/{cl}') #使用OpenCV读取图像
+    images.append(curImg) #添加到图像数组
+    classNames.append(os.path.splitext(cl)[0]) #裁剪文件名使其保留姓名部分
+print(classNames)
+
+def findEncodings(images): #检测图像中人脸
+    encodeList = []
+    for img in images:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) #将BGR通道切换到RGB通道
+        encode = face_recognition.face_encodings(img)[0] #检测人脸
+        encodeList.append(encode) #添加人脸对象
+    return encodeList
+
+def markAttendance(name): #保存考勤记录
+    now = datetime.now() #获取时间
+    dtString = now.strftime('%Y-%m-%d') #设置格式
+    if(not os.path.isdir(outputPath)): #如果不存在输出文件夹则创建
+        os.mkdir(outputPath)
+    if(not os.path.exists(f'{outputPath}/Attendance-{dtString}.csv')): #如果没有当日的考勤文件则创建
+        fOpen = open(f'{outputPath}/Attendance-{dtString}.csv','w')
+        fOpen.writelines("Name,Time") 
+        fOpen.close()
+    with open(f'{outputPath}/Attendance-{dtString}.csv','r+') as f: #写入人名
+        myDataList = f.readlines() #读取文件的每一行
+        nameList = []
+        for line in myDataList:
+            entry = line.split(',')
+            nameList.append(entry[0])
+        if name not in nameList: #如果要添加的姓名不存在与考勤文件中则添加
+            tString = now.strftime('%H:%M:%S') 
+            f.writelines(f'\n{name},{tString}') #向文件写入姓名和时间
+            f.close()
+
+encodeListKnown = findEncodings(images)
+print('Encoding Complete') #开始比对
+
+cap = cv2.VideoCapture(0) #打开摄像头
+
+while True:
+    success, img = cap.read() 
+    imgS = cv2.resize(img,(0,0),None,0.25,0.25) #缩放图像大小到原来的四分之一，方便检测
+    imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+
+    facesCurFrame = face_recognition.face_locations(imgS) #定位该帧的人脸
+    encodesCurFrame = face_recognition.face_encodings(imgS,facesCurFrame) #编码人脸
+
+    for encodeFace,faceLoc in zip(encodesCurFrame,facesCurFrame): #逐一比对
+        matches = face_recognition.compare_faces(encodeListKnown,encodeFace) #比较人脸
+        faceDis = face_recognition.face_distance(encodeListKnown,encodeFace) #获取比较与被比较对象的距离，即相似度
+        #print(faceDis)
+        matchIndex = np.argmin(faceDis)  #返回距离最小的即相似度最大的
+
+        if matches[matchIndex]: #如果相同则显示姓名
+            name = classNames[matchIndex].upper() 
+            #print(name)
+            y1, x2, y2, x1 = faceLoc
+            y1, x2, y2, x1 = y1 * 4,x2 * 4,y2 * 4,x1 * 4
+            cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
+            cv2.rectangle(img,(x1,y2-35),(x2,y2),(0,255,0),cv2.FILLED)
+            cv2.putText(img,name,(x1+6,y2-6),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),2) #画出矩形框并显示文字
+            markAttendance(name) #存入考勤表
+
+    cv2.imshow('Webcam',img) #显示处理后的摄像头画面
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()
+```
+
+
 
 #### 实例-图像修复 Image Inpating
 
