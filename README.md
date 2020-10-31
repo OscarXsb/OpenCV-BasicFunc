@@ -452,4 +452,19 @@ cv2.destroyAllWindows()
 
 右侧操作栏中clear代表清除修改，revoke代表撤销上一步修改，save表示保存修改后计算机复原的图片。
 
-附：官方的模型保存在 Google Drive 中，国内可以在[这里]()下载模型。
+附：官方的模型保存在 Google Drive 中，国内可以在[这里](https://cloud.189.cn/t/jqMRbavueYfy)下载模型。
+
+#### 引用
+
+---
+
+**1. Github - [yolov5](https://github.com/ultralytics/yolov5)**
+
+**2. Github - [face_recognition](https://github.com/ageitgey/face_recognition)**
+
+**3. Github - [inpainting_gmcnn](https://github.com/shepnerd/inpainting_gmcnn)**
+
+**4. [Roboflow](https://public.roboflow.com/) - [Mask Wearing Dataset](https://public.roboflow.com/object-detection/mask-wearing)**
+
+
+
