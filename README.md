@@ -416,7 +416,15 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+该案例中，imgAttendance文件夹中的图片文件可以替换或增加，目前文件夹中有 Bill Gates，Elon Mask, Jeff Bezos 的图片，识别到后会在设置的输出文件夹中创建以日期命名的csv文件，含有姓名和考勤时间信息，识别效果如下：
 
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_1.png)
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_2.png)
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_3.png)
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_4.png)
 
 #### 实例-图像修复 Image Inpating
 
