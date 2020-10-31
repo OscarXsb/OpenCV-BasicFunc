@@ -277,9 +277,7 @@ head:
 
 训练后模型使用效果如下：
 
-![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)
-
-由于该模型迭代次数过多，所以效果不是很好，所以又训练了一个迭代 300 次的模型，模型文件可在这里下载。
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)s
 
 Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关应用。
 
@@ -332,3 +330,27 @@ Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关�
 **使用**
 
 首先克隆或者下载该库的 ZIP 文件，
+
+#### 趣味实例-图像修复
+
+---
+
+###### **概述和环境准备**
+
+图像修复使用的是 Github 上 shepnerd 的开源项目**[inpainting_gmcnn](https://github.com/shepnerd/inpainting_gmcnn)**，克隆或下载后通过以下链接下载预训练的模型（[paris_streetview](https://drive.google.com/file/d/1wgesxSUfKGyPwGQMw6IXZ9GLeZ7YNQxu/view?usp=sharing), [CelebA-HQ_256](https://drive.google.com/file/d/1zvMMzMCXNxzbYJ_6SEwt3hUShD3Xnz9W/view?usp=sharing), [CelebA-HQ_512](https://drive.google.com/file/d/1cp5e8XyXmHNZWj_piHH4eg4HFi3ICl0l/view?usp=sharing), [Places2](https://drive.google.com/file/d/1aakVS0CPML_Qg-PuXGE1Xaql96hNEKOU/view?usp=sharing)），然后解压缩并将其放入项目目录下tensorflow文件夹新建的checkpoints文件夹下，如果你已经安装了tensorflow并且版本为 2.X 则需要降低版本到1.4及以上版本（不包括 2.X ），并且需要确保已经安装了numpy,scipy,easydict
+
+**打开GUI**
+
+在tensorflow文件夹下打开cmd,输入 `python painter_gmcnn.py --load_model_dir ./checkpoints/places2_512x680_freeform --img_shapes 512,680`,其中，load_model_dir为模型文件，填写刚刚下载好并且解压保存在 checkpoints 文件夹下的模型文件夹，img_shapes表示上传的图片的长宽大小,输入后回车，显示如下GUI页面：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/fill_img_gui_1.png)
+
+点击 load上传图片，图片的类型依据刚刚选择的模型的类型而定，否则结果将不准确，点击rectangle 或 stroke对左侧页面做出一些破坏，点击fill通过模型还原的结果会在右侧显示，如图：
+
+上传的是这张图片：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/fill_img_gui_2.png)
+
+破坏并修复后的效果：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/fill_img_gui_3.png)
