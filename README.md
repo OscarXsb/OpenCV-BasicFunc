@@ -279,6 +279,8 @@ head:
 
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)
 
+由于该模型迭代次数过多，所以效果不是很好，所以又训练了一个迭代 300 次的模型，模型文件可在这里下载。
+
 Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关应用。
 
 #### Face Recognition
@@ -326,3 +328,7 @@ Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关�
 5.打开 cmd ，输入 **pip3 install face_recognition** ,使用pip进行安装，成功后提示 **Successfully installed face-recognition-X.X.X (版本号) face-recognition-models-X.X.X (版本号)**
 
 附：考虑到有些小伙伴网络环境不畅，因此将 boost_1_74_0.zip , dlib-19.21.zip , cmake-3.19.0-rc2-win64-x64.msi上传到云盘，以上文件截至2020年10月31日均为最新，需要的[自行下载](https://cloud.189.cn/t/f6nu6reeyUvi) 。
+
+**使用**
+
+首先克隆或者下载该库的 ZIP 文件，
