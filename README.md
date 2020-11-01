@@ -188,6 +188,7 @@ cv2.destroyAllWindows()
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/yolov5_res_3.jpg)
 
 ##### Yolo模型训练
+
 ---
 对于Yolo v5模型训练，这里只做简要演示，不作详细说明。
 
@@ -416,7 +417,7 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-该案例中，imgAttendance文件夹中的图片文件可以替换或增加，目前文件夹中有 Bill Gates，Elon Mask, Jeff Bezos 的图片，识别到后会在设置的输出文件夹中创建以日期命名的csv文件，含有姓名和考勤时间信息，识别效果如下：
+该案例中，imgAttendance文件夹中的图片文件可以替换或增加，目前文件夹中有 Bill Gates，Elon Mask, Jeff Bezos 的图片 (图片均为网络搜集)，识别到后会在设置的输出文件夹中创建以日期命名的csv文件，含有姓名和考勤时间信息，识别效果如下：
 
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/face_rec_1.png)
 
@@ -458,13 +459,15 @@ cv2.destroyAllWindows()
 
 ---
 
-**1. Github - [yolov5](https://github.com/ultralytics/yolov5)**
+**[1] [Github](https://github.com) - [yolov5](https://github.com/ultralytics/yolov5)**
 
-**2. Github - [face_recognition](https://github.com/ageitgey/face_recognition)**
+**[2] [Github](https://github.com) - [face_recognition](https://github.com/ageitgey/face_recognition)**
 
-**3. Github - [inpainting_gmcnn](https://github.com/shepnerd/inpainting_gmcnn)**
+**[3] [Github](https://github.com) - [inpainting_gmcnn](https://github.com/shepnerd/inpainting_gmcnn)**
 
-**4. [Roboflow](https://public.roboflow.com/) - [Mask Wearing Dataset](https://public.roboflow.com/object-detection/mask-wearing)**
+**[4] [Roboflow](https://public.roboflow.com/) - [Mask Wearing Dataset](https://public.roboflow.com/object-detection/mask-wearing)**
+
+
 
 
 
