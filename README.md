@@ -169,7 +169,20 @@ cv2.destroyAllWindows()
 
 ##### Yolo初体验
 ---
-​       若要体验 Yolo v5 的目标检测结果，可在yolov5库下运行名为 detect.py 文件，后面的参数有两项必传，source 和 weights ，source 代表需进行识别的视频或图片文件，若为本地文件则输入文件路径，若选择默认摄像头，则传入 0 ，weights 代表具体引用的模型文件，上文提供下载的模型其文件权重不同，即识别准确率不同，当然，识别的速度也和模型文件有很大关系，若想调用摄像头，准确度最高，则在 cmd 中输入 **python detect.py --source 0 --weights weights/yolov5x.pt** ,即可进行识别，此处 **weights/yolov5x.pt** 为相对路径，x代表最大，最高，根据各个模型文件也可推断出准确度。
+​       若要体验 Yolo v5 的目标检测结果，可在yolov5库下运行名为 detect.py 文件，后面的参数有两项必传，source 和 weights ，source 代表需进行识别的视频或图片文件，若为本地文件则输入文件路径，若选择默认摄像头，则传入 0 ，weights 代表具体引用的模型文件，上文提供下载的模型其文件权重不同，即识别准确率不同，当然，识别的速度也和模型文件有很大关系，若想调用摄像头，准确度最高，则在 cmd 中输入 **python detect.py --source 0 --weights weights/yolov5x.pt** ,即可进行识别，此处 **weights/yolov5x.pt** 为相对路径，根据各个模型文件的大小可推断出准确度。
+
+参数详解：
+
+- — weights: 训练权重的路径
+- — source：推理目标的路径，可以是图片，视频，网络摄像头等
+- — source：推理结果的输出路径
+- — img-size：推理图片的大小
+- — conf-thres： 对象置信阈值，默认0.4
+- — iou-thres： NMS的IOU阈值，可以根据实际对象的重叠度调节，默认0.5
+- — device: 选择使用CUDA或者CPU
+- — view-img： 显示所有推理结果
+- — save-txt：将每一帧的推理结果及边界框的位置，存入*.txt文件
+- — classes：类别过滤，意思是只推理目标类别
 
 识别结果如下：
 
@@ -266,7 +279,28 @@ head:
 
 进入到下一步,训练:
 
-在 **yolov5/train.py** 所在目录下启动cmd, 输入 **python train.py --img 640 --batch 2 --epochs 1000 --data ../mask/data.yaml --cfg models/yolov5x_mask.yaml --weights weights/yolov5x.pt** 的命令,其中 epochs 后对应的是训练时迭代的次数,一般情况下 300 就足够了,batch后填写一次喂到模型里的数据量,正常应为16,由于GPU屡次报 内存溢出 的错误,故改为 2,weights代表权重文件,这里指定的是精度最高的文件,若输入 ' ' 则为随机,回车开始,在训练过程中,为了使训练过程可视化,可以在yolov5目录下新建cmd窗口,输入 tensorboard --logdir runs/ ,然后根据提示在浏览器中输入 **localhost:提示的端口号**,即可实时刷新看到效果,训练过程如下：
+在 **yolov5/train.py** 所在目录下启动cmd, 输入 **python train.py --img 640 --batch 2 --epochs 1000 --data ../mask/data.yaml --cfg models/yolov5x_mask.yaml --weights weights/yolov5x.pt** 的命令,
+
+训练参数：
+
+- — img: 输入图像的大小，建议使用640，输入图片尺寸过小时，会导致部分对象宽高小于3像素，可能会影响训练精度
+- — batch-size: 批次大小，对于2080Ti-11GB 或者P100-16GB，输入img-size 640，batch-size 32为上限
+- — epochs: 训练迭代数，建议训练300个epochs起
+- — data: 数据集中data.yaml包含说明类别、训练中关系到的文件夹等信息 
+- — cfg: 模型YAML文件
+- — weights: 预训练权重，可设定为已有训练好的权重文件
+- — cache-images: 将预处理后的训练数据全部存储在RAM中，能够加快训练速度
+- — hyp: 这个参数是自定义的hyp.yaml地址，对于小尺寸数据，可以更改hyp中optimizer为Adam，并修改配套参数为作者预设的Adam参数
+- — rect：输入这个参数，会关闭Mosaic数据增强
+- — resume： 从上次训练的结束last.pt继续训练
+- — nosave： 输入这个参数将存储最后的checkpoint，可以加快整体训练速度，但是建议关闭这个参数，这样能保留best.pt
+- — notest： 只测试最后一个epoch，能加快整体训练速度
+- — noautoanchor： 关闭自适应自适应锚定框，YOLO V5会自动分析当前锚定框的 **Best Possible Recall (BPR)** ，对于img-size 640，最佳BPR为0.9900，随着img-size降低，BPR也随之变差
+- — multi-scale： 输入图像多尺度训练，在训练过程中，输入图像会自动resize至 img-size +/- 50%，能一定程度上防止模型过拟合，但是对于GPU显存要求很高，对于640的img-size至少使用16GB显存，才能保证运行不出错
+- — single-cls： 模型的输出为单一类别
+- — device: 选择使用CUDA或者CPU
+
+在训练过程中,为了使训练过程可视化,可以在yolov5目录下新建cmd窗口,输入 tensorboard --logdir runs/ ,然后根据提示在浏览器中输入 **localhost:提示的端口号**,即可实时刷新看到效果,训练过程如下：
 
 ![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.png)
 
