@@ -336,7 +336,7 @@ Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关�
 
 - macOS or Linux (Windows not officially supported, but might work)
 
-但是由于本文的环境配置在 Linux 系统上，故给出 Windows 的安装教程（安装过程有些繁琐，但本文将给出详细说明）
+但是由于本文的环境配置在 Windows 系统上，故给出 Windows 的安装教程（安装过程有些繁琐，但本文将给出详细说明）
 
 1.如果本机没有安装 Visual Studio, 安装[Visual Studio]( https://visualstudio.microsoft.com/zh-hans/)，我选择的是 Professional 2019 版本，下载后选择使用 C++的桌面开发进行安装，提示重新启动电脑，重启后继续以下步骤。
 
