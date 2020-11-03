@@ -312,7 +312,7 @@ head:
 
 训练后模型使用效果如下：
 
-![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)s
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)
 
 Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关应用。
 
