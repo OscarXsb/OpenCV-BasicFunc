@@ -312,7 +312,7 @@ head:
 
 训练后模型使用效果如下：
 
-![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)s
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/train_yolov5_3.jpg)
 
 Yolov5暂时先告一段落，下面为大家简单叙述人脸识别的相关应用。
 
@@ -488,6 +488,18 @@ cv2.destroyAllWindows()
 右侧操作栏中clear代表清除修改，revoke代表撤销上一步修改，save表示保存修改后计算机复原的图片。
 
 附：官方的模型保存在 Google Drive 中，国内可以在[这里](https://cloud.189.cn/t/jqMRbavueYfy)下载模型。
+
+#### OpenPose
+
+---
+
+> [**OpenPose**](https://github.com/CMU-Perceptual-Computing-Lab/openpose) represents the **first real-time multi-person system to jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) on single images**.
+>
+> **OpenPose** 是第一个可以实时的一同检测多人的身体、手、脸部、足的关键点的系统。
+
+
+
+
 
 #### 引用
 
