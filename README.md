@@ -495,9 +495,24 @@ cv2.destroyAllWindows()
 
 > [**OpenPose**](https://github.com/CMU-Perceptual-Computing-Lab/openpose) represents the **first real-time multi-person system to jointly detect human body, hand, facial, and foot keypoints (in total 135 keypoints) on single images**.
 >
-> **OpenPose** 是第一个可以实时的一同检测多人的身体、手、脸部、足的关键点的系统。
+> **OpenPose** **代表了第一个实时多人，可以在单个图像上联合检测人体，手，面部和足部的关键点（总共135个关键点）的系统**
 
+功能如下：
 
+- 二维实时多人关键点检测
+  - 15或18或**25个关键点的身体/脚关键点估计**。**运行时间不依赖于检测到的人数**。
+  - **6个关键点关键点估计**。与25个关键点的身体/脚关键点检测器集成在一起。
+  - **2x21-keypoint手关键点估计**。目前，**运行时间取决于**在**检测到人的数量**。
+  - **70个关键点面部关键点估计**。目前，**运行时间取决于**在**检测到人的数量**。
+- 3D实时单人关键点检测
+  - 从多个单一视图进行3D三角剖分。
+  - 同步处理了Flir相机。
+  - 与Flir / Point Grey相机兼容，但提供了C ++演示来添加您的自定义输入。
+- 校准工具箱
+  - 校准容易估计失真，内部和外部相机参数。
+- **单人跟踪**可进一步提高速度或视觉平滑度。
+
+在本文中，主要介绍二维实时多人关键点检测的方法
 
 
 
