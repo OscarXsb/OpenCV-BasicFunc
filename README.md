@@ -514,7 +514,9 @@ cv2.destroyAllWindows()
 
 在本文中，主要介绍二维实时多人关键点检测的方法
 
+**安装**
 
+Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Computing-Lab/openpose/releases/)，如果不需要使用 Openpose 的 Python API， 则可以直接下载使用，release中含有多个示例文件。
 
 #### 引用
 
@@ -527,6 +529,10 @@ cv2.destroyAllWindows()
 **[3] [Github](https://github.com) - [inpainting_gmcnn](https://github.com/shepnerd/inpainting_gmcnn)**
 
 **[4] [Roboflow](https://public.roboflow.com/) - [Mask Wearing Dataset](https://public.roboflow.com/object-detection/mask-wearing)**
+
+**[5] [Github](https://github.com) - [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) **
+
+
 
 
 
