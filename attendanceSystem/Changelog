@@ -1,0 +1,11 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+## [0.1.0] - 2020-11-1
+### Added
+- Version navigation.
+- Realize the function of reading the image from the camera.
+- Face recognition.
+- Read the face image from the folder and get the encodings.
+- Add the name and time to the attendance file.
