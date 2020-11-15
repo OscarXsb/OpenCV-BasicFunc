@@ -518,6 +518,26 @@ cv2.destroyAllWindows()
 
 Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Computing-Lab/openpose/releases/)，如果不需要使用 Openpose 的 Python API， 则可以直接下载使用，release中含有多个示例文件。
 
+如果需要使用 Openpose 的 Python API进行开发，则需要自行编译。
+
+编译过程如下：
+
+1.安装前，需要准备 CUDA，CUDNN，CMake 和 Visual Studio
+
+后两者安装过程见 face_recognition
+
+2.Clone Openpose 库，进入`3rdparty` 文件夹，依照github上的地址在文件夹下依次克隆 caffe 和 pybind11，进入到`windows`文件夹，使用里面的 `getCaffe.bat` `getCaffe3rdparty.bat`  `getFreeglut.bat` `getOpenCV.bat` 下载编译所用的依赖，最终，`windows`目录下文件结构如下：
+
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/openpose_install_1.png)
+
+3.预先下载模型
+
+在克隆的 master 文件夹下 models 文件夹内，依照`getModels.bat`的内容依次下载并保存到指定位置。
+
+4.编译，打开 CMake_GUI，在master文件夹下创建build文件夹，打开CMake，设置 source code 为 master 文件夹，`Where to build the binaries`设置为新建的build文件夹，点击 configure，依据电脑环境设置编译器，在弹出的红色选项中选择与 PYTHON 有关的项，单机 Generate，成功后在build文件夹下使用 Visual Studio 打开 sln文件，进行编译
+
+5.完成，编译成功后，会看到`build/python/openpose\Release` 文件夹下的`pyopenpose.cp37-win_amd64.pyd` library文件,这就是我们所需要的 openpose python 库文件，至此，编译完毕。
+
 #### 引用
 
 ---
