@@ -530,7 +530,7 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 
 **[4] [Roboflow](https://public.roboflow.com/) - [Mask Wearing Dataset](https://public.roboflow.com/object-detection/mask-wearing)**
 
-**[5] [Github](https://github.com) - [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) **
+**[5] [Github](https://github.com) - [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)**
 
 
 
