@@ -536,7 +536,7 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 
 5.完成，编译成功后，会看到`build/python/openpose\Release` 文件夹下的`pyopenpose.cp37-win_amd64.pyd` library文件,这就是我们所需要的 openpose python 库文件，至此，编译完毕。
 
-#### PyTorch
+### PyTorch
 
 ---
 
@@ -557,6 +557,8 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 > ### Fast and Lean
 >
 > PyTorch has minimal framework overhead. We integrate acceleration libraries such as [Intel MKL](https://software.intel.com/mkl) and NVIDIA ([cuDNN](https://developer.nvidia.com/cudnn), [NCCL](https://developer.nvidia.com/nccl)) to maximize speed. At the core, its CPU and GPU Tensor and neural network backends (TH, THC, THNN, THCUNN) are mature and have been tested for years.
+
+#### Getting Started
 
 ##### 安装
 
@@ -597,7 +599,7 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 
    则 PyTorch 安装成功。
 
-#### 引用
+### 引用
 
 ---
 
