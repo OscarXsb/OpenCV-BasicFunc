@@ -27,7 +27,7 @@ while(True):
         face_area = img[y:y + h, x:x + w]
         smiles = smile_cascade.detectMultiScale(face_area,scaleFactor = 1.16,minNeighbors = 65,minSize = (25,25) , flags = cv.CASCADE_SCALE_IMAGE)
         if len(smiles):
-            if len(img[y - 10:y + h + 10, x - 10:x + w + 10]):
+            if len(img[y - 10:y + h + 20, x - 10:x + w + 10]):
                 cv.imwrite(f"face_output/{round(time.time())}{''.join(random.sample(string.ascii_letters + string.digits, 6))}.png", img[y - 10:y + h + 10, x - 10:x + w + 10])
                 flag = True
 
