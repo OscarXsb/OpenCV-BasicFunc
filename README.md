@@ -1,5 +1,5 @@
 # OpenCV-BasicFunc
-![](https://img.shields.io/badge/Python-v3.7.6-2EA44F.svg)  ![](https://img.shields.io/badge/OpenCV_for_Python-v4.4.0-297DDC.svg)  ![](https://img.shields.io/badge/PyTorch-v1.7.0-EE4C2C.svg)
+![](https://img.shields.io/badge/Python-v3.7.6-2EA44F.svg)  ![](https://img.shields.io/badge/OpenCV_for_Python-v4.4.0-297DDC.svg)  ![](https://img.shields.io/badge/PyTorch-v1.6.0-EE4C2C.svg)
 
 这是一个学习如何最基础的使用 OpenCV-Python 与 Yolo 的开源源代码仓库。
 
@@ -536,6 +536,67 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 
 5.完成，编译成功后，会看到`build/python/openpose\Release` 文件夹下的`pyopenpose.cp37-win_amd64.pyd` library文件,这就是我们所需要的 openpose python 库文件，至此，编译完毕。
 
+#### PyTorch
+
+---
+
+​	**[PyTorch](https://github.com/pytorch/pytorch)** 的介绍详见Github上的官方开源项目，部分优势如下：
+
+> PyTorch has a unique way of building neural networks: using and replaying a tape recorder.
+>
+> Most frameworks such as TensorFlow, Theano, Caffe, and CNTK have a static view of the world. One has to build a neural network and reuse the same structure again and again. Changing the way the network behaves means that one has to start from scratch.
+>
+> With PyTorch, we use a technique called reverse-mode auto-differentiation, which allows you to change the way your network behaves arbitrarily with zero lag or overhead. Our inspiration comes from several research papers on this topic, as well as current and past work such as [torch-autograd](https://github.com/twitter/torch-autograd), [autograd](https://github.com/HIPS/autograd), [Chainer](https://chainer.org/), etc.
+>
+> **While this technique is not unique to PyTorch, it's one of the fastest implementations of it to date. You get the best of speed and flexibility for your crazy research.**
+
+虽然 Tape-Based Autograd 技术并非PyTorch独有，但它是迄今为止最快的实现之一。对于高强度的搜索，您将获得最快的速度和灵活性。
+
+> PyTorch is designed to be intuitive, linear in thought, and easy to use. When you execute a line of code, it gets executed. There isn't an asynchronous view of the world. When you drop into a debugger or receive error messages and stack traces, understanding them is straightforward. The stack trace points to exactly where your code was defined. We hope you never spend hours debugging your code because of bad stack traces or asynchronous and opaque execution engines.
+
+> ### Fast and Lean
+>
+> PyTorch has minimal framework overhead. We integrate acceleration libraries such as [Intel MKL](https://software.intel.com/mkl) and NVIDIA ([cuDNN](https://developer.nvidia.com/cudnn), [NCCL](https://developer.nvidia.com/nccl)) to maximize speed. At the core, its CPU and GPU Tensor and neural network backends (TH, THC, THNN, THCUNN) are mature and have been tested for years.
+
+##### 安装
+
+---
+
+1. 安装 [ANACONDA](https://www.anaconda.com/products/individual)，安装过程中需要选择 Add Anaconda to my PATH environment varialble , 添加环境变量，大约五分钟，安装后可以打开 cmd 输入 conda --version，如果没有报错，则视为安装完毕。
+
+2. 安装 [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)，这一步需要有 NVidia 显卡，使用 GPU 可以加快后续的识别以及训练速度，必不可少，根据自己的系统选择安装包，建议选择 Local 版本，虽然安装包较大，但安装速度会明显加快，由于涉及到驱动的问题，安装过程中屏幕会有偶尔闪动，如果存在文件夹`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\bin` 并存在 `nvcc.exe` (文件夹版本号可能略有出入)，则视为安装成功。
+
+   这时打开 cmd，输入 `nvcc -V`，若提示找不到命令，就需要将bin文件夹添加到 PATH 环境变量，编辑System的Path变量，加入`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\bin`和`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.1\libnvvp` (文件夹版本号可能略有出入)，再次输入`nvcc -V`，若输出类似`nvcc: NVIDIA (R) Cuda compiler driver
+   Copyright (c) 2005-2020 NVIDIA Corporation
+   Built on Mon_Oct_12_20:54:10_Pacific_Daylight_Time_2020
+   Cuda compilation tools, release 11.1, V11.1.105
+   Build cuda_11.1.relgpu_drvr455TC455_06.29190527_0` 的版本信息，则安装成功。
+
+3. 安装 PyTorch，打开 [PyTorch官网](https://pytorch.org/)，滚动到页面底部，选择 Stable 版本，对应系统，Conda，Python，选择对应 CUDA 版本，复制 `Run this Command` 中的命令，以管理员身份运行 cmd 中粘贴进行安装，过程中选择 **yes**。
+
+4. 安装 [PyCharm](https://www.jetbrains.com/pycharm/)，选择 **Community** 版本下载安装，安装完成后新建工程，并且设置现有的 Python 编译器，若无法自动搜索到则选择 Conda 的安装位置下的 **python.exe**。
+
+5. 测试程序
+
+   进入到刚创建的项目中，创建测试的python文件 (已上传到 **PyTorch/testEnv.py** 文件中) ，内容如下：
+
+   ```python
+   import torch #引入库文件
+   
+   print(torch.__version__) #打印torch版本
+   print('GPU:', torch.cuda.is_available()) #查看是否支持cuda调用
+   
+   ```
+
+   右键菜单选择 **运行 XXX.py** 运行，若输出 
+
+   ```
+   X.X.X (PyTorch的版本号)
+   GPU: True
+   ```
+
+   则 PyTorch 安装成功。
+
 #### 引用
 
 ---
@@ -549,6 +610,8 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 **[4] [Roboflow](https://public.roboflow.com/) - [Mask Wearing Dataset](https://public.roboflow.com/object-detection/mask-wearing)**
 
 **[5] [Github](https://github.com) - [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)**
+
+**[6] [Github](https://github.com) - [PyTorch](https://github.com/pytorch/pytorch)**
 
 
 
