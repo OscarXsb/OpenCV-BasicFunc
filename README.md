@@ -598,6 +598,10 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
    ```
 
    则 PyTorch 安装成功。
+ ##### 梯度下降算法
+
+---
+![](https://github.com/OscarXsb/OpenCV-BasicFunc/blob/master/references/WhatisGradientDescent.gif)
 
 ### 引用
 
@@ -614,6 +618,10 @@ Openpose已经有打包好的 [release](https://github.com/CMU-Perceptual-Comput
 **[5] [Github](https://github.com) - [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)**
 
 **[6] [Github](https://github.com) - [PyTorch](https://github.com/pytorch/pytorch)**
+
+**[7] [梯度下降算法 - 知乎](https://zhuanlan.zhihu.com/p/43452377)**
+
+**[8] [一文简述深度学习优化方法—梯度下降](https://zhuanlan.zhihu.com/p/39842768)**
 
 
 
